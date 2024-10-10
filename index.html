@@ -3,436 +3,762 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SeguroWeb - Proteção Digital Avançada</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Segurança Digital e Prevenção de Fraudes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <style>
         :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #50c878;
-            --accent-color: #ff6b6b;
-            --background-color: #f0f4f8;
-            --text-color: #333;
-            --card-bg: #fff;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --cor-primaria: #0a192f;
+            --cor-secundaria: #172a45;
+            --cor-destaque: #64ffda;
+            --cor-texto: #8892b0;
+            --cor-texto-claro: #ccd6f6;
+            --fonte-principal: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            --transicao-padrao: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @media (prefers-color-scheme: light) {
+            :root {
+                --cor-primaria: #ffffff;
+                --cor-secundaria: #f0f0f0;
+                --cor-destaque: #0070f3;
+                --cor-texto: #333333;
+                --cor-texto-claro: #666666;
+            }
+        }
+
+        html {
+            font-size: 62.5%;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: var(--fonte-principal);
+            background-color: var(--cor-primaria);
+            color: var(--cor-texto);
             line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--background-color);
+            font-size: 1.6rem;
+            overflow-x: hidden;
         }
 
         .container {
-            width: 90%;
-            max-width: 1200px;
+            max-width: 120rem;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 20px 0;
+            background-color: rgba(23, 42, 69, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: var(--shadow);
+            transition: var(--transicao-padrao);
         }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo i {
-            margin-right: 10px;
-            font-size: 2.5rem;
+        header.scrolled {
+            background-color: rgba(23, 42, 69, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         nav ul {
             display: flex;
+            justify-content: center;
             list-style-type: none;
+            padding: 0;
         }
 
         nav ul li {
-            margin-left: 20px;
+            margin: 0 1rem;
         }
 
         nav ul li a {
-            color: white;
+            color: var(--cor-texto-claro);
             text-decoration: none;
             font-weight: 500;
-            transition: var(--transition);
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-
-        nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        main {
-            margin-top: 80px;
-            padding: 40px 0;
-        }
-
-        .hero {
-            background: url('/api/placeholder/1200/600') no-repeat center center/cover;
-            height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
+            transition: var(--transicao-padrao);
+            padding: 0.5rem 1rem;
+            border-radius: 0.4rem;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--cor-destaque);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        nav ul li a:hover::after, nav ul li a:focus::after {
+            transform: scaleX(1);
+        }
+
+        nav ul li a:hover, nav ul li a:focus {
+            color: var(--cor-destaque);
+        }
+
+        main {
+            padding: 8rem 0 4rem;
+        }
+
+        section {
+            margin-bottom: 6rem;
+            background-color: var(--cor-secundaria);
+            border-radius: 0.8rem;
+            padding: 3rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transicao-padrao);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        h1, h2, h3 {
+            color: var(--cor-texto-claro);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 4.2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 6rem;
+            height: 0.4rem;
+            background-color: var(--cor-destaque);
+            margin: 2rem auto 0;
+            border-radius: 0.2rem;
+        }
+
+        h2 {
+            font-size: 3.2rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0.8rem;
+            height: 3rem;
+            background-color: var(--cor-destaque);
+            border-radius: 0.2rem;
+        }
+
+        h3 {
+            font-size: 2.4rem;
+            color: var(--cor-destaque);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .tutorial-item, .alerta-item, .faq-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 0.4rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: var(--transicao-padrao);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tutorial-item::before, .alerta-item::before, .faq-item::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 0.4rem;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background-color: var(--cor-destaque);
+            transition: var(--transicao-padrao);
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 30px;
-            animation: fadeInUp 1s ease 0.5s;
-            animation-fill-mode: both;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: bold;
-        }
-
-        .btn:hover {
-            background-color: #3da861;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            color: var(--primary-color);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 4px;
-            background-color: var(--secondary-color);
-            margin: 20px auto 0;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            padding: 30px;
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-        }
-
-        #chatbot {
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 10px;
-            padding: 40px;
-            margin-top: 40px;
-        }
-
-        #chat-messages {
-            height: 300px;
-            overflow-y: auto;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        #user-input {
+        .tutorial-item:hover::before, .alerta-item:hover::before, .faq-item:hover::before {
             width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            font-size: 1rem;
+            opacity: 0.1;
         }
 
-        #verificador {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            padding: 40px;
-            margin-top: 40px;
+        .tutorial-item:hover, .alerta-item:hover, .faq-item:hover {
+            transform: translateX(0.5rem);
+            box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-placeholder, .image-placeholder {
+            background-color: #2a3e5c;
+            color: var(--cor-texto-claro);
+            text-align: center;
+            padding: 4rem;
+            margin: 2rem 0;
+            border-radius: 0.4rem;
+            font-size: 1.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-placeholder::before, .image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #url-form {
+            display: flex;
+            margin-bottom: 2rem;
         }
 
         #url-input {
+            flex-grow: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 0.4rem 0 0 0.4rem;
+            font-size: 1.6rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--cor-texto-claro);
+            transition: var(--transicao-padrao);
+        }
+
+        #url-input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        button {
+            background-color: var(--cor-destaque);
+            color: var(--cor-primaria);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.4rem;
+            cursor: pointer;
+            transition: var(--transicao-padrao);
+            font-size: 1.6rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            padding: 15px;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            font-size: 1rem;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: var(--transicao-padrao);
         }
 
-        .alert {
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 20px;
+        button:hover::before {
+            left: 100%;
         }
 
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+        button:hover, button:focus {
+            background-color: #45e0c0;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .alert-danger {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+        #url-form button {
+            border-radius: 0 0.4rem 0.4rem 0;
         }
 
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 40px 0;
+        #chatbot-container {
+            height: 40rem;
+            overflow-y: auto;
+            border: 1px solid var(--cor-destaque);
+            border-radius: 0.4rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--cor-destaque) var(--cor-secundaria);
         }
 
-        .social-icons {
-            margin-top: 20px;
+        #chatbot-container::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .social-icons a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: var(--transition);
+        #chatbot-container::-webkit-scrollbar-track {
+            background: var(--cor-secundaria);
         }
 
-        .social-icons a:hover {
-            color: var(--secondary-color);
+        #chatbot-container::-webkit-scrollbar-thumb {
+            background-color: var(--cor-destaque);
+            border-radius: 4px;
+        }
+
+        .chat-message {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 0.4rem;
+            max-width: 80%;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .user-message {
+            background-color: rgba(100, 255, 218, 0.1);
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .bot-message {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        #chat-input {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 0.4rem;
+            font-size: 1.6rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--cor-texto-claro);
+            transition: var(--transicao-padrao);
+        }
+
+        #chat-input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .banco-button {
+            display: inline-block;
+            background-color: var(--cor-destaque);
+            color: var(--cor-primaria);
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            border-radius: 0.4rem;
+            text-decoration: none;
+            transition: var(--transicao-padrao);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banco-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: var(--transicao-padrao);
+        }
+
+        .banco-button:hover::before {
+            left: 100%;
+        }
+
+        .banco-button:hover, .banco-button:focus {
+            background-color: #45e0c0;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
+            html {
+                font-size: 56.25%;
             }
 
             nav ul {
-                margin-top: 20px;
+                flex-direction: column;
+                align-items: center;
             }
 
             nav ul li {
-                margin: 0 10px;
+                margin: 0.5rem 0;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            .chat-message {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 50%;
             }
 
-            .section-title {
-                font-size: 2rem;
+            h1 {
+                font-size: 3.6rem;
+            }
+
+            h2 {
+                font-size: 2.8rem;
+            }
+
+            h3 {
+                font-size: 2.2rem;
+            }
+
+            #url-form {
+                flex-direction: column;
+            }
+
+            #url-input, #url-form button {
+                width: 100%;
+                border-radius: 0.4rem;
+                margin-bottom: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container header-content">
-            <div class="logo"><i class="fas fa-shield-alt"></i>SeguroWeb</div>
-            <nav>
-                <ul>
-                    <li><a href="#tutoriais"><i class="fas fa-book"></i> Tutoriais</a></li>
-                    <li><a href="#alertas"><i class="fas fa-exclamation-triangle"></i> Alertas</a></li>
-                    <li><a href="#simulacao"><i class="fas fa-vr-cardboard"></i> Simulação</a></li>
-                    <li><a href="#chatbot"><i class="fas fa-robot"></i> Chatbot</a></li>
-                    <li><a href="#verificador"><i class="fas fa-search"></i> Verificador</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="#tutoriais">Tutoriais</a></li>
+                <li><a href="#alertas">Alertas</a></li>
+                <li><a href="#simulacoes">Simulações</a></li>
+                <li><a href="#verificador">Verificador de URL</a></li>
+                <li><a href="#chatbot">Chatbot</a></li>
+                <li><a href="#bancos">Acesso aos Bancos</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Proteja-se no Mundo Digital</h1>
-                <p>Aprenda a navegar com segurança e evite golpes online com nossas ferramentas e recursos exclusivos.</p>
-                <a href="#tutoriais" class="btn">Comece Agora <i class="fas fa-arrow-right"></i></a>
+    <main class="container">
+        <section id="tutoriais" data-aos="fade-up">
+            <h1>Tutoriais de Segurança Digital</h1>
+            <div class="tutorial-item">
+                <h3>Como criar senhas fortes</h3>
+                <p>Aprenda a criar senhas seguras e difíceis de serem hackeadas.</p>
+                <div class="video-placeholder">
+                    [Vídeo sobre criação de senhas fortes]
+                </div>
             </div>
-        </section>
-
-        <section id="tutoriais" class="section">
-            <div class="container">
-                <h2 class="section-title">Tutoriais de Segurança</h2>
-                <div class="cards">
-                    <div class="card">
-                        <div class="card-icon"><i class="fas fa-lock"></i></div>
-                        <h3>Senhas Fortes</h3>
-                        <p>Aprenda a criar senhas seguras e fáceis de lembrar.</p>
-                        <a href="#" class="btn">Ler mais <i class="fas fa-chevron-right"></i></a>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon"><i class="fas fa-envelope"></i></div>
-                        <h3>Detectar Phishing</h3>
-                        <p>Dicas para identificar e-mails fraudulentos.</p>
-                        <a href="#" class="btn">Ler mais <i class="fas fa-chevron-right"></i></a>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon"><i class="fas fa-wifi"></i></div>
-                        <h3>Wi-Fi Público</h3>
-                        <p>Mantenha-se seguro ao usar redes públicas.</p>
-                        <a href="#" class="btn">Ler mais <i class="fas fa-chevron-right"></i></a>
-                    </div>
+            <div class="tutorial-item">
+                <h3>Navegação segura na internet</h3>
+                <p>Dicas para navegar com segurança e evitar sites maliciosos.</p>
+                <div class="image-placeholder">
+                    [Imagem ilustrativa sobre navegação segura]
                 </div>
             </div>
         </section>
 
-        <section id="alertas" class="section">
-            <div class="container">
-                <h2 class="section-title">Alertas de Golpes</h2>
-                <div class="cards" id="alertas-container">
-                    <!-- Alertas serão inseridos aqui dinamicamente -->
-                </div>
+        <section id="alertas" data-aos="fade-up">
+            <h2>Alertas de Golpes Atuais</h2>
+            <div id="alertas-container">
+                <!-- Os alertas serão preenchidos dinamicamente via JavaScript -->
             </div>
         </section>
 
-        <section id="simulacao" class="section">
-            <div class="container">
-                <h2 class="section-title">Simulador de Golpes</h2>
-                <div class="card">
-                    <h3>Teste seus conhecimentos</h3>
-                    <p>Participe de simulações realistas de golpes online e aprenda a se proteger.</p>
-                    <button id="iniciar-simulacao" class="btn">Iniciar Simulação <i class="fas fa-play"></i></button>
-                    <div id="simulacao-content"></div>
-                </div>
+        <section id="simulacoes" data-aos="fade-up">
+            <h2>Simulações de Golpes</h2>
+            <div id="simulacao-container">
+                <p>Escolha um cenário para simular:</p>
+                <select id="cenario-select">
+                    <option value="">Selecione um cenário</option>
+                    <option value="phishing">E-mail de phishing</option>
+                    <option value="falso-banco">Site falso de banco</option>
+                    <option value="golpe-whatsapp">Golpe do WhatsApp</option>
+                </select>
+                <div id="cenario-descricao"></div>
+                <div id="cenario-interacao"></div>
             </div>
         </section>
 
-        <section id="chatbot" class="section">
-            <div class="container">
-                <h2 class="section-title">Chatbot Educacional</h2>
-                <div id="chat-messages"></div>
-                <input type="text" id="user-input" placeholder="Digite sua pergunta...">
-                <button id="enviar-mensagem" class="btn">Enviar <i class="fas fa-paper-plane"></i></button>
+        <section id="verificador" data-aos="fade-up">
+            <h2>Verificador de URLs</h2>
+            <form id="url-form">
+                <input type="url" id="url-input" placeholder="Digite a URL para verificar" required>
+                <button type="submit">Verificar URL</button>
+            </form>
+            <div id="url-result"></div>
+        </section>
+
+        <section id="chatbot" data-aos="fade-up">
+            <h2>Assistente Virtual</h2>
+            <div id="chatbot-container">
+                <!-- As mensagens do chat serão preenchidas dinamicamente via JavaScript -->
+            </div>
+            <input type="text" id="chat-input" placeholder="Digite sua pergunta aqui">
+        </section>
+
+        <section id="bancos" data-aos="fade-up">
+            <h2>Acesso Seguro aos Bancos</h2>
+            <p>Clique nos botões abaixo para acessar o site oficial do seu banco:</p>
+            <div id="banco-links">
+                <a href="https://www.banco.bradesco" class="banco-button" target="_blank" rel="noopener noreferrer">Bradesco</a>
+                <a href="https://www.itau.com.br" class="banco-button" target="_blank" rel="noopener noreferrer">Itaú</a>
+                <a href="https://www.santander.com.br" class="banco-button" target="_blank" rel="noopener noreferrer">Santander</a>
+                <a href="https://www.bb.com.br" class="banco-button" target="_blank" rel="noopener noreferrer">Banco do Brasil</a>
             </div>
         </section>
 
-        <section id="verificador" class="section">
-            <div class="container">
-                <h2 class="section-title">Verificador de URLs</h2>
-                <div class="card">
-                    <h3>Verifique a segurança de um link</h3>
-                    <input type="text" id="url-input" placeholder="Digite a URL para verificar">
-                    <button id="verificar-url" class="btn">Verificar <i class="fas fa-search"></i></button>
-                    <div id="resultado-verificacao"></div>
-                </div>
+        <section id="faq" data-aos="fade-up">
+            <h2>Perguntas Frequentes</h2>
+            <div class="faq-item">
+                <h3>Como reconhecer um e-mail de phishing?</h3>
+                <p>Fique atento a erros de ortografia, URLs suspeitas e solicitações urgentes de informações pessoais.</p>
+            </div>
+            <div class="faq-item">
+                <h3>O que fazer se eu cair em um golpe online?</h3>
+                <p>Imediatamente altere suas senhas, notifique seu banco e registre um boletim de ocorrência.</p>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2024 SeguroWeb - Sua Proteção Digital. Todos os direitos reservados.</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </div>
+        <p>&copy; 2024 Site de Segurança Digital. Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        // Inicialização do AOS (Animate on Scroll)
+        AOS.init();
+
+        // Função para carregar alertas de golpes
+        function carregarAlertas() {
+            const alertas = [
+                { titulo: "Golpe do Falso Boleto", descricao: "Criminosos estão enviando falsos boletos por e-mail. Sempre verifique a autenticidade antes de pagar." },
+                { titulo: "Phishing via WhatsApp", descricao: "Mensagens falsas pedindo dados pessoais estão circulando no WhatsApp. Não compartilhe informações sensíveis." },
+                { titulo: "Clonagem de Cartão", descricao: "Novo método de clonagem de cartões em caixas eletrônicos. Fique atento ao usar caixas em locais suspeitos." }
+            ];
+
+            const alertasContainer = document.getElementById('alertas-container');
+            alertas.forEach(alerta => {
+                const alertaEl = document.createElement('div');
+                alertaEl.classList.add('alerta-item');
+                alertaEl.innerHTML = `
+                    <h3>${alerta.titulo}</h3>
+                    <p>${alerta.descricao}</p>
+                `;
+                alertasContainer.appendChild(alertaEl);
+            });
+        }
+
+        // Função para simular cenários de golpes
+        function iniciarSimulacao() {
+            const cenarioSelect = document.getElementById('cenario-select');
+            const cenarioDescricao = document.getElementById('cenario-descricao');
+            const cenarioInteracao = document.getElementById('cenario-interacao');
+
+            cenarioSelect.addEventListener('change', function() {
+                const cenarioSelecionado = this.value;
+                let descricao = '';
+                let interacao = '';
+
+                switch(cenarioSelecionado) {
+                    case 'phishing':
+                        descricao = 'Você recebeu um e-mail urgente pedindo para atualizar suas informações bancárias. O que você faz?';
+                        interacao = `
+                            <button onclick="avaliarEscolha('phishing', 'clicar')">Clico no link do e-mail</button>
+                            <button onclick="avaliarEscolha('phishing', 'ignorar')">Ignoro o e-mail</button>
+                            <button onclick="avaliarEscolha('phishing', 'verificar')">Verifico a autenticidade com o banco</button>
+                        `;
+                        break;
+                    case 'falso-banco':
+                        descricao = 'Você recebe uma ligação de alguém se passando por seu gerente de banco, pedindo seus dados. O que você faz?';
+                        interacao = `
+                            <button onclick="avaliarEscolha('falso-banco', 'fornecer')">Forneço os dados solicitados</button>
+                            <button onclick="avaliarEscolha('falso-banco', 'desligar')">Desligo a ligação</button>
+                            <button onclick="avaliarEscolha('falso-banco', 'ligarBanco')">Ligo para o banco para confirmar</button>
+                        `;
+                        break;
+                    case 'golpe-whatsapp':
+                        descricao = 'Você recebe uma mensagem no WhatsApp de um número desconhecido pedindo dinheiro em nome de um familiar. O que você faz?';
+                        interacao = `
+                            <button onclick="avaliarEscolha('golpe-whatsapp', 'enviar')">Envio o dinheiro imediatamente</button>
+                            <button onclick="avaliarEscolha('golpe-whatsapp', 'bloquear')">Bloqueio o número</button>
+                            <button onclick="avaliarEscolha('golpe-whatsapp', 'confirmar')">Ligo para o familiar para confirmar</button>
+                        `;
+                        break;
+                    default:
+                        descricao = 'Selecione um cenário para começar a simulação.';
+                }
+
+                cenarioDescricao.innerHTML = descricao;
+                cenarioInteracao.innerHTML = interacao;
+            });
+        }
+
+        function avaliarEscolha(cenario, escolha) {
+            let feedback = '';
+            switch(cenario) {
+                case 'phishing':
+                    if (escolha === 'verificar') {
+                        feedback = 'Ótima escolha! Sempre verifique a autenticidade de e-mails suspeitos diretamente com sua instituição financeira.';
+                    } else if (escolha === 'ignorar') {
+                        feedback = 'Bom, ignorar é melhor do que clicar, mas o ideal é verificar a autenticidade com o banco.';
+                    } else {
+                        feedback = 'Cuidado! Clicar em links de e-mails suspeitos pode comprometer sua segurança. Sempre verifique com o banco.';
+                    }
+                    break;
+                case 'falso-banco':
+                    if (escolha === 'ligarBanco') {
+                        feedback = 'Excelente decisão! Sempre confirme diretamente com seu banco usando os números oficiais.';
+                    } else if (escolha === 'desligar') {
+                        feedback = 'Desligar é uma boa opção, mas o ideal é ligar para o banco para confirmar e reportar a tentativa de golpe.';
+                    } else {
+                        feedback = 'Nunca forneça dados sensíveis por telefone. Bancos não pedem essas informações dessa forma.';
+                    }
+                    break;
+                case 'golpe-whatsapp':
+                    if (escolha === 'confirmar') {
+                        feedback = 'Perfeito! Sempre confirme diretamente com o familiar antes de enviar dinheiro.';
+                    } else if (escolha === 'bloquear') {
+                        feedback = 'Bloquear é uma boa medida, mas confirmar com o familiar é ainda melhor para evitar mal-entendidos.';
+                    } else {
+                        feedback = 'Cuidado! Nunca envie dinheiro sem confirmar a identidade do solicitante.';
+                    }
+                    break;
+            }
+            document.getElementById('cenario-interacao').innerHTML = `<p>${feedback}</p>`;
+        }
+
+        // Função para verificar URLs
+        function verificarURL() {
+            const urlForm = document.getElementById('url-form');
+            const urlInput = document.getElementById('url-input');
+            const urlResult = document.getElementById('url-result');
+
+            urlForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const url = urlInput.value;
+                
+                // Simulação de verificação (em um cenário real, isso seria feito no backend)
+                const urlSegura = /^https:\/\//.test(url) && !url.includes('banco-falso') && !url.includes('phishing');
+                
+                if (urlSegura) {
+                    urlResult.innerHTML = `<p style="color: green;">A URL ${url} parece segura. No entanto, sempre esteja atento.</p>`;
+                } else {
+                    urlResult.innerHTML = `<p style="color: red;">Cuidado! A URL ${url} pode ser insegura ou fraudulenta.</p>`;
+                }
+            });
+        }
+
+        // Função para implementar o chatbot
+        function iniciarChatbot() {
+            const chatContainer = document.getElementById('chatbot-container');
+            const chatInput = document.getElementById('chat-input');
+
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const pergunta = this.value;
+                    adicionarMensagem('user', pergunta);
+                    this.value = '';
+
+                    // Simular resposta do bot (em um cenário real, isso seria processado no backend)
+                    setTimeout(() => {
+                        const resposta = gerarRespostaChatbot(pergunta);
+                        adicionarMensagem('bot', resposta);
+                    }, 1000);
+                }
+            });
+
+            function adicionarMensagem(tipo, texto) {
+                const mensagem = document.createElement('div');
+                mensagem.classList.add('chat-message', `${tipo}-message`);
+                mensagem.textContent = texto;
+                chatContainer.appendChild(mensagem);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+
+            function gerarRespostaChatbot(pergunta) {
+                // Lógica simplificada de resposta (em um cenário real, use NLP ou IA mais avançada)
+                if (pergunta.toLowerCase().includes('senha')) {
+                    return 'Nunca compartilhe suas senhas. Use senhas fortes e diferentes para cada conta.';
+                } else if (pergunta.toLowerCase().includes('phishing')) {
+                    return 'Phishing é uma técnica de fraude online. Verifique sempre a autenticidade dos e-mails e sites antes de fornecer informações.';
+                } else if (pergunta.toLowerCase().includes('antivírus')) {
+                    return 'Um bom antivírus é essencial. Mantenha-o sempre atualizado e faça varreduras regulares.';
+                } else {
+                    return 'Desculpe, não entendi sua pergunta. Pode reformular ou perguntar sobre senha, phishing ou antivírus?';
+                }
+            }
+        }
+
+        // Inicialização das funções
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarAlertas();
+            iniciarSimulacao();
+            verificarURL();
+            iniciarChatbot();
+        });
+
+        // Adicionar efeito de rolagem suave para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Adicionar efeito de cabeçalho fixo ao rolar
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
