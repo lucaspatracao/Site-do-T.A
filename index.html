@@ -3,745 +3,722 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal de Segurança Digital - Aprenda sobre segurança online, prevenção de fraudes e boas práticas digitais">
+    <meta name="keywords" content="segurança digital, prevenção de fraudes, segurança online, phishing, golpes online">
+    <meta name="theme-color" content="#0a192f">
+    <meta property="og:title" content="Segurança Digital e Prevenção de Fraudes">
+    <meta property="og:description" content="Aprenda sobre segurança online, prevenção de fraudes e boas práticas digitais">
+    <meta property="og:type" content="website">
     <title>Segurança Digital e Prevenção de Fraudes</title>
+    
+    <!-- CSS Normalizer -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Fontes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
         :root {
-            --cor-primaria: #0a192f;
-            --cor-secundaria: #172a45;
-            --cor-destaque: #64ffda;
-            --cor-texto: #8892b0;
-            --cor-texto-claro: #ccd6f6;
-            --fonte-principal: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            --transicao-padrao: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            /* Sistema de cores moderno com tons escuros e claros */
+            --color-bg-primary: #0a192f;
+            --color-bg-secondary: #172a45;
+            --color-accent: #64ffda;
+            --color-text-primary: #ccd6f6;
+            --color-text-secondary: #8892b0;
+            --color-danger: #ff6b6b;
+            --color-success: #4caf50;
+            --color-warning: #ffd93d;
+            
+            /* Variáveis de layout */
+            --header-height: 70px;
+            --container-width: 1200px;
+            --border-radius: 8px;
+            --transition-fast: 200ms ease;
+            --transition-normal: 300ms ease;
+            --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
-        @media (prefers-color-scheme: light) {
-            :root {
-                --cor-primaria: #ffffff;
-                --cor-secundaria: #f0f0f0;
-                --cor-destaque: #0070f3;
-                --cor-texto: #333333;
-                --cor-texto-claro: #666666;
-            }
+        /* Reset e estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         html {
-            font-size: 62.5%;
             scroll-behavior: smooth;
+            font-size: 62.5%; /* 1rem = 10px */
         }
 
         body {
-            font-family: var(--fonte-principal);
-            background-color: var(--cor-primaria);
-            color: var(--cor-texto);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-secondary);
             line-height: 1.6;
             font-size: 1.6rem;
             overflow-x: hidden;
         }
 
+        /* Container responsivo */
         .container {
-            max-width: 120rem;
+            width: min(var(--container-width), 90%);
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        header {
-            background-color: rgba(23, 42, 69, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
+        /* Header e navegação */
+        .header {
             position: fixed;
-            width: 100%;
             top: 0;
-            z-index: 1000;
-            transition: var(--transicao-padrao);
-        }
-
-        header.scrolled {
-            background-color: rgba(23, 42, 69, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            margin: 0 1rem;
-        }
-
-        nav ul li a {
-            color: var(--cor-texto-claro);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transicao-padrao);
-            padding: 0.5rem 1rem;
-            border-radius: 0.4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
             left: 0;
             width: 100%;
-            height: 2px;
-            background-color: var(--cor-destaque);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition-normal);
         }
 
-        nav ul li a:hover::after, nav ul li a:focus::after {
-            transform: scaleX(1);
+        .header.scrolled {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        nav ul li a:hover, nav ul li a:focus {
-            color: var(--cor-destaque);
+        .nav {
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        main {
-            padding: 8rem 0 4rem;
+        .nav__list {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
         }
 
-        section {
-            margin-bottom: 6rem;
-            background-color: var(--cor-secundaria);
-            border-radius: 0.8rem;
-            padding: 3rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: var(--transicao-padrao);
-            opacity: 0;
-            transform: translateY(20px);
+        .nav__link {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
         }
 
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .nav__link:hover {
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--color-accent);
         }
 
-        section:hover {
-            transform: translateY(-0.5rem);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        .nav__icon {
+            font-size: 1.8rem;
         }
 
-        h1, h2, h3 {
-            color: var(--cor-texto-claro);
-            margin-bottom: 2rem;
-            font-weight: 700;
+        /* Seções principais */
+        .section {
+            padding: 8rem 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        h1 {
-            font-size: 4.2rem;
-            text-align: center;
+        .section__title {
+            font-size: 4rem;
+            color: var(--color-text-primary);
             margin-bottom: 4rem;
+            text-align: center;
             position: relative;
         }
 
-        h1::after {
+        .section__title::after {
             content: '';
-            display: block;
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
             width: 6rem;
             height: 0.4rem;
-            background-color: var(--cor-destaque);
-            margin: 2rem auto 0;
-            border-radius: 0.2rem;
+            background-color: var(--color-accent);
+            border-radius: var(--border-radius);
         }
 
-        h2 {
-            font-size: 3.2rem;
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        h2::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0.8rem;
-            height: 3rem;
-            background-color: var(--cor-destaque);
-            border-radius: 0.2rem;
-        }
-
-        h3 {
-            font-size: 2.4rem;
-            color: var(--cor-destaque);
-        }
-
-        p {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .tutorial-item, .alerta-item, .faq-item {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 0.4rem;
+        /* Cards */
+        .card {
+            background: var(--color-bg-secondary);
+            border-radius: var(--border-radius);
             padding: 2rem;
             margin-bottom: 2rem;
-            transition: var(--transicao-padrao);
+            transition: var(--transition-normal);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow);
+            border-color: var(--color-accent);
+        }
+
+        .card__title {
+            color: var(--color-accent);
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card__content {
+            color: var(--color-text-secondary);
+        }
+
+        /* Grid de tutoriais */
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .tutorial-card {
             position: relative;
             overflow: hidden;
         }
 
-        .tutorial-item::before, .alerta-item::before, .faq-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0.4rem;
-            height: 100%;
-            background-color: var(--cor-destaque);
-            transition: var(--transicao-padrao);
-        }
-
-        .tutorial-item:hover::before, .alerta-item:hover::before, .faq-item:hover::before {
-            width: 100%;
-            opacity: 0.1;
-        }
-
-        .tutorial-item:hover, .alerta-item:hover, .faq-item:hover {
-            transform: translateX(0.5rem);
-            box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .video-placeholder, .image-placeholder {
-            background-color: #2a3e5c;
-            color: var(--cor-texto-claro);
-            text-align: center;
-            padding: 4rem;
-            margin: 2rem 0;
-            border-radius: 0.4rem;
-            font-size: 1.8rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .video-placeholder::before, .image-placeholder::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.1) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        #url-form {
+        .tutorial-card__media {
+            background: rgba(100, 255, 218, 0.1);
+            aspect-ratio: 16/9;
             display: flex;
-            margin-bottom: 2rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius);
+            margin-top: 1.5rem;
+            font-size: 1.4rem;
+            color: var(--color-text-primary);
         }
 
-        #url-input {
-            flex-grow: 1;
-            padding: 1rem;
-            border: none;
-            border-radius: 0.4rem 0 0 0.4rem;
+        /* Formulário de verificação de URL */
+        .url-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .url-input {
+            flex: 1;
+            padding: 1.5rem;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--color-text-primary);
             font-size: 1.6rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--cor-texto-claro);
-            transition: var(--transicao-padrao);
+            transition: var(--transition-fast);
         }
 
-        #url-input:focus {
+        .url-input:focus {
             outline: none;
-            background-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--color-accent);
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        button {
-            background-color: var(--cor-destaque);
-            color: var(--cor-primaria);
+        .btn {
+            padding: 1.5rem 3rem;
             border: none;
-            padding: 1rem 2rem;
-            border-radius: 0.4rem;
+            border-radius: var(--border-radius);
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+            font-weight: 600;
             cursor: pointer;
-            transition: var(--transicao-padrao);
-            font-size: 1.6rem;
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
+            transition: var(--transition-fast);
         }
 
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent
-            );
-            transition: var(--transicao-padrao);
-        }
-
-        button:hover::before {
-            left: 100%;
-        }
-
-        button:hover, button:focus {
-            background-color: #45e0c0;
+        .btn:hover {
+            background: rgba(100, 255, 218, 0.8);
             transform: translateY(-2px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        #url-form button {
-            border-radius: 0 0.4rem 0.4rem 0;
+        /* Chat container */
+        .chat-container {
+            background: var(--color-bg-secondary);
+            border-radius: var(--border-radius);
+            height: 400px;
+            display: flex;
+            flex-direction: column;
         }
 
-        #chatbot-container {
-            height: 40rem;
+        .chat-messages {
+            flex: 1;
             overflow-y: auto;
-            border: 1px solid var(--cor-destaque);
-            border-radius: 0.4rem;
+            padding: 2rem;
+        }
+
+        .chat-input-container {
+            padding: 2rem;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .chat-input {
+            width: 100%;
+            padding: 1.5rem;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--color-text-primary);
+        }
+
+        .message {
+            margin-bottom: 1.5rem;
             padding: 1rem;
-            margin-bottom: 1rem;
-            scrollbar-width: thin;
-            scrollbar-color: var(--cor-destaque) var(--cor-secundaria);
-        }
-
-        #chatbot-container::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        #chatbot-container::-webkit-scrollbar-track {
-            background: var(--cor-secundaria);
-        }
-
-        #chatbot-container::-webkit-scrollbar-thumb {
-            background-color: var(--cor-destaque);
-            border-radius: 4px;
-        }
-
-        .chat-message {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            border-radius: 0.4rem;
+            border-radius: var(--border-radius);
             max-width: 80%;
-            animation: fadeIn 0.3s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .user-message {
-            background-color: rgba(100, 255, 218, 0.1);
+        .message--user {
+            background: rgba(100, 255, 218, 0.1);
             margin-left: auto;
-            text-align: right;
         }
 
-        .bot-message {
-            background-color: rgba(255, 255, 255, 0.05);
+        .message--bot {
+            background: rgba(255, 255, 255, 0.05);
         }
 
-        #chat-input {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 0.4rem;
-            font-size: 1.6rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--cor-texto-claro);
-            transition: var(--transicao-padrao);
+        /* Alertas */
+        .alert {
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            animation: slideIn 0.3s ease-out;
         }
 
-        #chat-input:focus {
-            outline: none;
-            background-color: rgba(255, 255, 255, 0.2);
+        .alert--warning {
+            background: rgba(255, 217, 61, 0.1);
+            border: 1px solid var(--color-warning);
         }
 
-        .banco-button {
-            display: inline-block;
-            background-color: var(--cor-destaque);
-            color: var(--cor-primaria);
-            padding: 1rem 2rem;
-            margin: 0.5rem;
-            border-radius: 0.4rem;
-            text-decoration: none;
-            transition: var(--transicao-padrao);
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
+        .alert--danger {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid var(--color-danger);
         }
 
-        .banco-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent
-            );
-            transition: var(--transicao-padrao);
+        .alert__icon {
+            font-size: 2.4rem;
+            color: var(--color-warning);
         }
 
-        .banco-button:hover::before {
-            left: 100%;
+        /* Animações */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .banco-button:hover, .banco-button:focus {
-            background-color: #45e0c0;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
+        /* Media Queries */
         @media (max-width: 768px) {
             html {
-                font-size: 56.25%;
+                font-size: 56.25%; /* 9px */
             }
 
-            nav ul {
+            .nav__list {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: var(--color-bg-secondary);
                 flex-direction: column;
-                align-items: center;
+                padding: 2rem;
+                transform: translateY(-100%);
+                transition: var(--transition-normal);
             }
 
-            nav ul li {
-                margin: 0.5rem 0;
+            .nav__list.active {
+                transform: translateY(0);
             }
 
-            .chat-message {
-                max-width: 90%;
+            .url-form {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
             }
         }
 
         @media (max-width: 480px) {
             html {
-                font-size: 50%;
+                font-size: 50%; /* 8px */
             }
 
-            h1 {
-                font-size: 3.6rem;
+            .section__title {
+                font-size: 3.2rem;
             }
+        }
 
-            h2 {
-                font-size: 2.8rem;
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+            padding: 8px;
+            z-index: 1001;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-text-primary);
+            font-size: 2.4rem;
+            cursor: pointer;
+            padding: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
             }
-
-            h3 {
-                font-size: 2.2rem;
-            }
-
-            #url-form {
+            
+            .nav__list {
+                position: fixed;
+                top: var(--header-height);
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - var(--header-height));
+                background: var(--color-bg-secondary);
                 flex-direction: column;
+                padding: 2rem;
+                transition: right 0.3s ease;
             }
-
-            #url-input, #url-form button {
-                width: 100%;
-                border-radius: 0.4rem;
-                margin-bottom: 1rem;
+            
+            .nav__list.active {
+                right: 0;
             }
+        }
+        
+        /* Breadcrumbs styles */
+        .breadcrumbs {
+            padding: 1rem 0;
+            margin-top: var(--header-height);
+            background: var(--color-bg-secondary);
+        }
+        
+        .breadcrumbs__list {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+            color: var(--color-text-secondary);
+        }
+        
+        .breadcrumbs__separator {
+            color: var(--color-accent);
+        }
+        
+        /* New form styles */
+        .contact-form {
+            display: grid;
+            gap: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .form-label {
+            color: var(--color-text-primary);
+            font-weight: 600;
+        }
+        
+        .form-input,
+        .form-textarea {
+            padding: 1rem;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--color-text-primary);
+            resize: vertical;
+        }
+        
+        .form-feedback {
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            display: none;
+        }
+        
+        .form-feedback.success {
+            display: block;
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid var(--color-success);
+        }
+        
+        .form-feedback.error {
+            display: block;
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid var(--color-danger);
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#tutoriais">Tutoriais</a></li>
-                <li><a href="#alertas">Alertas</a></li>
-                <li><a href="#simulacoes">Simulações</a></li>
-                <li><a href="#verificador">Verificador de URL</a></li>
-                <li><a href="#chatbot">Chatbot</a></li>
-                <li><a href="#bancos">Acesso aos Bancos</a></li>
-                <li><a href="#faq">FAQ</a></li>
+    <header class="header">
+        <nav class="nav container">
+            <ul class="nav__list">
+                <li><a href="#tutoriais" class="nav__link"><i class="fas fa-book nav__icon"></i>Tutoriais</a></li>
+                <li><a href="#alertas" class="nav__link"><i class="fas fa-exclamation-triangle nav__icon"></i>Alertas</a></li>
+                <li><a href="#simulacoes" class="nav__link"><i class="fas fa-laptop-code nav__icon"></i>Simulações</a></li>
+                <li><a href="#verificador" class="nav__link"><i class="fas fa-link nav__icon"></i>Verificador</a></li>
+                <li><a href="#chatbot" class="nav__link"><i class="fas fa-robot nav__icon"></i>Chatbot</a></li>
+                <li><a href="#bancos" class="nav__link"><i class="fas fa-university nav__icon"></i>Bancos</a></li>
+                <li><a href="#faq" class="nav__link"><i class="fas fa-question-circle nav__icon"></i>FAQ</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="container">
-        <section id="tutoriais" data-aos="fade-up">
-            <h1>Tutoriais de Segurança Digital</h1>
-            <div class="tutorial-item">
-                <h3>Como criar senhas fortes</h3>
-                <p>Aprenda a criar senhas seguras e difíceis de serem hackeadas.</p>
-                <div class="video-placeholder">
-                    [Vídeo sobre criação de senhas fortes]
+    <main>
+        <section id="tutoriais" class="section">
+            <div class="container">
+                <h1 class="section__title">Tutoriais de Segurança Digital</h1>
+                <div class="tutorials-grid">
+                    <article class="card tutorial-card">
+                        <h3 class="card__title">Como criar senhas fortes</h3>
+                        <p class="card__content">Aprenda a criar senhas seguras e difíceis de serem hackeadas.</p>
+                        <div class="tutorial-card__media">
+                            [Vídeo sobre criação de senhas fortes]
+                        </div>
+                    </article>
+                    <article class="card tutorial-card">
+                        <h3 class="card__title">Navegação segura na internet</h3>
+                        <p class="card__content">Dicas para navegar com segurança e evitar sites maliciosos.</p>
+                        <div class="tutorial-card__media">
+                            [Imagem ilustrativa sobre navegação segura]
+                        </div>
+                    </article>
                 </div>
             </div>
-            <div class="tutorial-item">
-                <h3>Navegação segura na internet</h3>
-                <p>Dicas para navegar com segurança e evitar sites maliciosos.</p>
-                <div class="image-placeholder">
-                    [Imagem ilustrativa sobre navegação segura]
+        </section>
+
+        <section id="alertas" class="section">
+            <div class="container">
+                <h2 class="section__title">Alertas de Golpes Atuais</h2>
+                <div class="alert alert--danger">
+                    <i class="fas fa-exclamation-circle alert__icon"></i>
+                    <div>
+                        <h3 class="card__title">Golpe do Falso Boleto</h3>
+                        <p>Criminosos estão enviando falsos boletos por e-mail. Sempre verifique a autenticidade antes de pagar.</p>
+                    </div>
+                </div>
+                <div class="alert alert--warning">
+                    <i class="fas fa-exclamation-triangle alert__icon"></i>
+                    <div>
+                        <h3 class="card__title">Phishing via WhatsApp</h3>
+                        <p>Mensagens falsas pedindo dados pessoais estão circulando no WhatsApp. Não compartilhe informações sensíveis.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="alertas" data-aos="fade-up">
-            <h2>Alertas de Golpes Atuais</h2>
-            <div id="alertas-container">
-                <!-- Os alertas serão preenchidos dinamicamente via JavaScript -->
+        <section id="verificador" class="section">
+            <div class="container">
+                <h2 class="section__title">Verificador de URLs</h2>
+                <div class="card">
+                    <form id="url-form" class="url-form">
+                        <input type="url" id="url-input" class="url-input" placeholder="Digite a URL para verificar" required>
+                        <button type="submit" class="btn">
+                            <i class="fas fa-search"></i> Verificar URL
+                        </button>
+                    </form>
+                    <div id="url-result" class="alert" style="display: none;"></div>
+                </div>
             </div>
         </section>
 
-        <section id="simulacoes" data-aos="fade-up">
-            <h2>Simulações de Golpes</h2>
-            <div id="simulacao-container">
-                <p>Escolha um cenário para simular:</p>
-                <select id="cenario-select">
-                    <option value="">Selecione um cenário</option>
-                    <option value="phishing">E-mail de phishing</option>
-                    <option value="falso-banco">Site falso de banco</option>
-                    <option value="golpe-whatsapp">Golpe do WhatsApp</option>
-                </select>
-                <div id="cenario-descricao"></div>
-                <div id="cenario-interacao"></div>
+        <section id="chatbot" class="section">
+            <div class="container">
+                <h2 class="section__title">Assistente Virtual</h2>
+                <div class="chat-container">
+                    <div id="chat-messages" class="chat-messages"></div>
+                    <div class="chat-input-container">
+                        <input type="text" id="chat-input" class="chat-input" placeholder="Digite sua mensagem aqui...">
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="verificador" data-aos="fade-up">
-            <h2>Verificador de URLs</h2>
-            <form id="url-form">
-                <input type="url" id="url-input" placeholder="Digite a URL para verificar" required>
-                <button type="submit">Verificar URL</button>
-            </form>
-            <div id="url-result"></div>
-        </section>
-
-        <section id="chatbot" data-aos="fade-up">
-            <h2>Assistente Virtual</h2>
-            <div id="chatbot-container">
-                <!-- As mensagens do chat serão preenchidas dinamicamente via JavaScript -->
-            </div>
-            <input type="text" id="chat-input" placeholder="Digite sua pergunta aqui">
-        </section>
-
-        <section id="bancos" data-aos="fade-up">
-            <h2>Acesso Seguro aos Bancos</h2>
-            <p>Clique nos botões abaixo para acessar o site oficial do seu banco:</p>
-            <div id="banco-links">
-                <a href="https://www.banco.bradesco" class="banco-button" target="_blank" rel="noopener noreferrer">Bradesco</a>
-                <a href="https://www.itau.com.br" class="banco-button" target="_blank" rel="noopener noreferrer">Itaú</a>
-                <a href="https://www.santander.com.br" class="banco-button" target="_blank" rel="noopener noreferrer">Santander</a>
-                <a href="https://www.bb.com.br" class="banco-button" target="_blank" rel="noopener noreferrer">Banco do Brasil</a>
+        <section id="bancos" class="section">
+            <div class="container">
+                <h2 class="section__title">Acesso Seguro aos Bancos</h2>
+                <div class="bank-grid">
+                    <a href="https://www.bb.com.br" class="card bank-card" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-university bank-icon"></i>
+                        <h3 class="card__title">Banco do Brasil</h3>
+                        <p class="card__content">Acesse o site oficial do Banco do Brasil</p>
+                    </a>
+                    <a href="https://www.caixa.gov.br" class="card bank-card" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-university bank-icon"></i>
+                        <h3 class="card__title">Caixa Econômica</h3>
+                        <p class="card__content">Acesse o site oficial da Caixa Econômica Federal</p>
+                    </a>
+                    <a href="https://www.itau.com.br" class="card bank-card" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-university bank-icon"></i>
+                        <h3 class="card__title">Itaú</h3>
+                        <p class="card__content">Acesse o site oficial do Itaú</p>
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section id="faq" data-aos="fade-up">
-            <h2>Perguntas Frequentes</h2>
-            <div class="faq-item">
-                <h3>Como reconhecer um e-mail de phishing?</h3>
-                <p>Fique atento a erros de ortografia, URLs suspeitas e solicitações urgentes de informações pessoais.</p>
+        <section id="faq" class="section">
+            <div class="container">
+                <h2 class="section__title">Perguntas Frequentes</h2>
+                <div class="faq-container">
+                    <div class="card faq-item">
+                        <h3 class="card__title">
+                            <i class="fas fa-question-circle"></i>
+                            Como reconhecer um e-mail de phishing?
+                        </h3>
+                        <p class="card__content">
+                            Fique atento a erros de ortografia, URLs suspeitas e solicitações urgentes de informações pessoais.
+                            Bancos nunca pedem dados sensíveis por e-mail.
+                        </p>
+                    </div>
+                    <div class="card faq-item">
+                        <h3 class="card__title">
+                            <i class="fas fa-question-circle"></i>
+                            O que fazer se eu cair em um golpe?
+                        </h3>
+                        <p class="card__content">
+                            1. Altere imediatamente suas senhas<br>
+                            2. Notifique seu banco<br>
+                            3. Registre um boletim de ocorrência<br>
+                            4. Entre em contato com os órgãos de proteção ao consumidor
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="faq-item">
-                <h3>O que fazer se eu cair em um golpe online?</h3>
-                <p>Imediatamente altere suas senhas, notifique seu banco e registre um boletim de ocorrência.</p>
+        </section>
+
+        <section id="contato" class="section" aria-labelledby="contato-title">
+            <div class="container">
+                <h2 id="contato-title" class="section__title">Entre em Contato</h2>
+                <form class="contact-form" novalidate>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" id="name" class="form-input" required 
+                               pattern="[A-Za-zÀ-ÿ\s]{3,}" 
+                               title="Por favor, insira um nome válido com pelo menos 3 caracteres">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" id="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Mensagem</label>
+                        <textarea id="message" class="form-textarea" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Mensagem</button>
+                    <div class="form-feedback"></div>
+                </form>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Site de Segurança Digital. Todos os direitos reservados.</p>
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <p class="footer__text">&copy; 2024 Site de Segurança Digital. Todos os direitos reservados.</p>
+        </div>
     </footer>
 
     <script>
-        // Inicialização do AOS (Animate on Scroll)
-        AOS.init();
-
-        // Função para carregar alertas de golpes
-        function carregarAlertas() {
-            const alertas = [
-                { titulo: "Golpe do Falso Boleto", descricao: "Criminosos estão enviando falsos boletos por e-mail. Sempre verifique a autenticidade antes de pagar." },
-                { titulo: "Phishing via WhatsApp", descricao: "Mensagens falsas pedindo dados pessoais estão circulando no WhatsApp. Não compartilhe informações sensíveis." },
-                { titulo: "Clonagem de Cartão", descricao: "Novo método de clonagem de cartões em caixas eletrônicos. Fique atento ao usar caixas em locais suspeitos." }
-            ];
-
-            const alertasContainer = document.getElementById('alertas-container');
-            alertas.forEach(alerta => {
-                const alertaEl = document.createElement('div');
-                alertaEl.classList.add('alerta-item');
-                alertaEl.innerHTML = `
-                    <h3>${alerta.titulo}</h3>
-                    <p>${alerta.descricao}</p>
-                `;
-                alertasContainer.appendChild(alertaEl);
-            });
-        }
-
-        // Função para simular cenários de golpes
-        function iniciarSimulacao() {
-            const cenarioSelect = document.getElementById('cenario-select');
-            const cenarioDescricao = document.getElementById('cenario-descricao');
-            const cenarioInteracao = document.getElementById('cenario-interacao');
-
-            cenarioSelect.addEventListener('change', function() {
-                const cenarioSelecionado = this.value;
-                let descricao = '';
-                let interacao = '';
-
-                switch(cenarioSelecionado) {
-                    case 'phishing':
-                        descricao = 'Você recebeu um e-mail urgente pedindo para atualizar suas informações bancárias. O que você faz?';
-                        interacao = `
-                            <button onclick="avaliarEscolha('phishing', 'clicar')">Clico no link do e-mail</button>
-                            <button onclick="avaliarEscolha('phishing', 'ignorar')">Ignoro o e-mail</button>
-                            <button onclick="avaliarEscolha('phishing', 'verificar')">Verifico a autenticidade com o banco</button>
-                        `;
-                        break;
-                    case 'falso-banco':
-                        descricao = 'Você recebe uma ligação de alguém se passando por seu gerente de banco, pedindo seus dados. O que você faz?';
-                        interacao = `
-                            <button onclick="avaliarEscolha('falso-banco', 'fornecer')">Forneço os dados solicitados</button>
-                            <button onclick="avaliarEscolha('falso-banco', 'desligar')">Desligo a ligação</button>
-                            <button onclick="avaliarEscolha('falso-banco', 'ligarBanco')">Ligo para o banco para confirmar</button>
-                        `;
-                        break;
-                    case 'golpe-whatsapp':
-                        descricao = 'Você recebe uma mensagem no WhatsApp de um número desconhecido pedindo dinheiro em nome de um familiar. O que você faz?';
-                        interacao = `
-                            <button onclick="avaliarEscolha('golpe-whatsapp', 'enviar')">Envio o dinheiro imediatamente</button>
-                            <button onclick="avaliarEscolha('golpe-whatsapp', 'bloquear')">Bloqueio o número</button>
-                            <button onclick="avaliarEscolha('golpe-whatsapp', 'confirmar')">Ligo para o familiar para confirmar</button>
-                        `;
-                        break;
-                    default:
-                        descricao = 'Selecione um cenário para começar a simulação.';
-                }
-
-                cenarioDescricao.innerHTML = descricao;
-                cenarioInteracao.innerHTML = interacao;
-            });
-        }
-
-        function avaliarEscolha(cenario, escolha) {
-            let feedback = '';
-            switch(cenario) {
-                case 'phishing':
-                    if (escolha === 'verificar') {
-                        feedback = 'Ótima escolha! Sempre verifique a autenticidade de e-mails suspeitos diretamente com sua instituição financeira.';
-                    } else if (escolha === 'ignorar') {
-                        feedback = 'Bom, ignorar é melhor do que clicar, mas o ideal é verificar a autenticidade com o banco.';
-                    } else {
-                        feedback = 'Cuidado! Clicar em links de e-mails suspeitos pode comprometer sua segurança. Sempre verifique com o banco.';
-                    }
-                    break;
-                case 'falso-banco':
-                    if (escolha === 'ligarBanco') {
-                        feedback = 'Excelente decisão! Sempre confirme diretamente com seu banco usando os números oficiais.';
-                    } else if (escolha === 'desligar') {
-                        feedback = 'Desligar é uma boa opção, mas o ideal é ligar para o banco para confirmar e reportar a tentativa de golpe.';
-                    } else {
-                        feedback = 'Nunca forneça dados sensíveis por telefone. Bancos não pedem essas informações dessa forma.';
-                    }
-                    break;
-                case 'golpe-whatsapp':
-                    if (escolha === 'confirmar') {
-                        feedback = 'Perfeito! Sempre confirme diretamente com o familiar antes de enviar dinheiro.';
-                    } else if (escolha === 'bloquear') {
-                        feedback = 'Bloquear é uma boa medida, mas confirmar com o familiar é ainda melhor para evitar mal-entendidos.';
-                    } else {
-                        feedback = 'Cuidado! Nunca envie dinheiro sem confirmar a identidade do solicitante.';
-                    }
-                    break;
+        // Efeito de scroll no header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
-            document.getElementById('cenario-interacao').innerHTML = `<p>${feedback}</p>`;
-        }
-
-        // Função para verificar URLs
-        function verificarURL() {
-            const urlForm = document.getElementById('url-form');
-            const urlInput = document.getElementById('url-input');
-            const urlResult = document.getElementById('url-result');
-
-            urlForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const url = urlInput.value;
-                
-                // Simulação de verificação (em um cenário real, isso seria feito no backend)
-                const urlSegura = /^https:\/\//.test(url) && !url.includes('banco-falso') && !url.includes('phishing');
-                
-                if (urlSegura) {
-                    urlResult.innerHTML = `<p style="color: green;">A URL ${url} parece segura. No entanto, sempre esteja atento.</p>`;
-                } else {
-                    urlResult.innerHTML = `<p style="color: red;">Cuidado! A URL ${url} pode ser insegura ou fraudulenta.</p>`;
-                }
-            });
-        }
-
-        // Função para implementar o chatbot
-        function iniciarChatbot() {
-            const chatContainer = document.getElementById('chatbot-container');
-            const chatInput = document.getElementById('chat-input');
-
-            chatInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    const pergunta = this.value;
-                    adicionarMensagem('user', pergunta);
-                    this.value = '';
-
-                    // Simular resposta do bot (em um cenário real, isso seria processado no backend)
-                    setTimeout(() => {
-                        const resposta = gerarRespostaChatbot(pergunta);
-                        adicionarMensagem('bot', resposta);
-                    }, 1000);
-                }
-            });
-
-            function adicionarMensagem(tipo, texto) {
-                const mensagem = document.createElement('div');
-                mensagem.classList.add('chat-message', `${tipo}-message`);
-                mensagem.textContent = texto;
-                chatContainer.appendChild(mensagem);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-
-            function gerarRespostaChatbot(pergunta) {
-                // Lógica simplificada de resposta (em um cenário real, use NLP ou IA mais avançada)
-                if (pergunta.toLowerCase().includes('senha')) {
-                    return 'Nunca compartilhe suas senhas. Use senhas fortes e diferentes para cada conta.';
-                } else if (pergunta.toLowerCase().includes('phishing')) {
-                    return 'Phishing é uma técnica de fraude online. Verifique sempre a autenticidade dos e-mails e sites antes de fornecer informações.';
-                } else if (pergunta.toLowerCase().includes('antivírus')) {
-                    return 'Um bom antivírus é essencial. Mantenha-o sempre atualizado e faça varreduras regulares.';
-                } else {
-                    return 'Desculpe, não entendi sua pergunta. Pode reformular ou perguntar sobre senha, phishing ou antivírus?';
-                }
-            }
-        }
-
-        // Inicialização das funções
-        document.addEventListener('DOMContentLoaded', function() {
-            carregarAlertas();
-            iniciarSimulacao();
-            verificarURL();
-            iniciarChatbot();
         });
 
-        // Adicionar efeito de rolagem suave para links de navegação
+        // Verificador de URL
+        const urlForm = document.getElementById('url-form');
+        const urlInput = document.getElementById('url-input');
+        const urlResult = document.getElementById('url-result');
+
+        urlForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const url = urlInput.value;
+            
+            // Simulação de verificação
+            const isSecure = /^https:\/\//.test(url) && !url.includes('banco-falso') && !url.includes('phishing');
+            
+            urlResult.style.display = 'block';
+            urlResult.className = `alert alert--${isSecure ? 'success' : 'danger'}`;
+            urlResult.innerHTML = `
+                <i class="fas fa-${isSecure ? 'check-circle' : 'exclamation-circle'} alert__icon"></i>
+                <p>${isSecure ? 
+                    `A URL ${url} parece segura. No entanto, sempre esteja atento.` : 
+                    `Cuidado! A URL ${url} pode ser insegura ou fraudulenta.`}</p>
+            `;
+        });
+
+        // Chatbot simples
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && chatInput.value.trim()) {
+                // Adiciona mensagem do usuário
+                addMessage('user', chatInput.value);
+                
+                // Simula resposta do bot
+                setTimeout(() => {
+                    const resposta = getBotResponse(chatInput.value);
+                    addMessage('bot', resposta);
+                }, 1000);
+
+                chatInput.value = '';
+            }
+        });
+
+        function addMessage(type, text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message--${type}`;
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getBotResponse(input) {
+            const responses = {
+                'senha': 'Nunca compartilhe suas senhas. Use senhas fortes e diferentes para cada conta.',
+                'phishing': 'Phishing é uma técnica de fraude. Sempre verifique a autenticidade dos e-mails.',
+                'golpe': 'Se suspeitar de um golpe, não clique em links e não forneça dados pessoais.',
+                'default': 'Como posso ajudar com sua segurança digital?'
+            };
+
+            const lowerInput = input.toLowerCase();
+            for (const key in responses) {
+                if (lowerInput.includes(key)) {
+                    return responses[key];
+                }
+            }
+            return responses.default;
+        }
+
+        // Animação suave para links internos
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -751,14 +728,81 @@
             });
         });
 
-        // Adicionar efeito de cabeçalho fixo ao rolar
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+        // Adiciona animações aos elementos quando aparecem na tela
+        const observeElements = () => {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.card, .alert').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.5s ease-out';
+                observer.observe(el);
+            });
+        };
+
+        // Inicia as observações quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', observeElements);
+        // Mobile menu functionality
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navList = document.querySelector('.nav__list');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+            navList.classList.toggle('active');
+        });
+
+        // Form validation and submission
+        const contactForm = document.querySelector('.contact-form');
+        const formFeedback = document.querySelector('.form-feedback');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!contactForm.checkValidity()) {
+                formFeedback.textContent = 'Por favor, preencha todos os campos corretamente.';
+                formFeedback.className = 'form-feedback error';
+                return;
+            }
+
+            try {
+                // Simulate form submission
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                formFeedback.textContent = 'Mensagem enviada com sucesso!';
+                formFeedback.className = 'form-feedback success';
+                contactForm.reset();
+            } catch (error) {
+                formFeedback.textContent = 'Erro ao enviar mensagem. Tente novamente.';
+                formFeedback.className = 'form-feedback error';
             }
         });
+
+        // Intersection Observer for animations
+        const observeElements = () => {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.card, .alert').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.5s ease-out';
+                observer.observe(el);
+            });
+        };
     </script>
 </body>
+</html>
