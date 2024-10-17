@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Mantendo as variáveis CSS originais */
         :root {
             --cor-primaria: #0f172a;
             --cor-secundaria: #1e293b;
@@ -41,15 +40,11 @@
             font-family: var(--fonte-principal);
             background: var(--cor-primaria);
             color: var(--cor-texto);
-            line-height: 1.6;
-            font-size: 1.6rem;
             overflow-x: hidden;
         }
 
-        /* Header e Navegação */
         header {
             background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(12px);
             padding: 1.6rem 0;
             position: fixed;
             width: 100%;
@@ -104,15 +99,13 @@
             background: rgba(6, 182, 212, 0.1);
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 12rem 2.4rem;
-            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)), 
-                        url('https://source.unsplash.com/random/1920x1080?technology') no-repeat center center/cover;
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)),
+                        url('https://wallpapers.com/images/hd/4k-tech-pdapufxxxi7md845.jpg') no-repeat center center/cover;
         }
 
         .hero-content {
@@ -135,6 +128,10 @@
 
         /* Cards e Seções */
         section {
+            padding: 4rem 0;
+        }
+
+        main {
             padding: 8rem 2.4rem;
         }
 
@@ -455,10 +452,7 @@
     </section>
 
     <main>
-        <!-- Mantendo as seções originais e adicionando as novas -->
-        
-        <!-- Seção de Tutoriais mantida do primeiro documento -->
-        <section id="tutoriais" data-aos="fade-up">
+        <section id="tutoriais" >
             <div class="container">
                 <h2><i class="fas fa-graduation-cap"></i> Tutoriais de Segurança</h2>
                 <div class="grid">
@@ -481,17 +475,16 @@
             </div>
         </section>
 
-        <section id="alertas" data-aos="fade-up">
+        <section id="alertas" >
             <div class="container">
                 <h2><i class="fas fa-bell"></i> Alertas de Segurança</h2>
                 <div id="alertas-container" class="grid">
-                    <!-- Preenchido via JavaScript -->
+    
                 </div>
             </div>
         </section>
 
-        <!-- Nova seção de Simulações -->
-        <section id="simulacoes" data-aos="fade-up">
+        <section id="simulacoes" 
             <div class="container">
                 <h2><i class="fas fa-vr-cardboard"></i> Simulações de Golpes</h2>
                 <div id="simulacao-container">
@@ -508,8 +501,7 @@
             </div>
         </section>
 
-        <!-- Nova seção de Verificador de URLs -->
-        <section id="verificador" data-aos="fade-up">
+        <section id="verificador" 
             <div class="container">
                 <h2><i class="fas fa-search"></i> Verificador de URLs</h2>
                 <form id="url-form">
@@ -520,8 +512,7 @@
             </div>
         </section>
 
-        <!-- Seção do Chatbot mantida e melhorada -->
-        <section id="chatbot" data-aos="fade-up">
+        <section id="chatbot" 
             <div class="container">
                 <h2><i class="fas fa-robot"></i> Assistente Virtual</h2>
                 <div class="card">
@@ -538,7 +529,7 @@
             </div>
         </section>
 
-        <section id="bancos" data-aos="fade-up">
+        <section id="bancos" 
             <div class="container">
                 <h2><i class="fas fa-university"></i> Acesso Seguro aos Bancos</h2>
                 <p>Clique nos botões abaixo para acessar o site oficial do seu banco:</p>
@@ -551,8 +542,7 @@
             </div>
         </section>
 
-        <!-- Nova seção de FAQ -->
-        <section id="faq" data-aos="fade-up">
+        <section id="faq" 
             <div class="container">
                 <h2><i class="fas fa-question-circle"></i> Perguntas Frequentes</h2>
                 <div class="faq-item">
@@ -790,7 +780,6 @@ class URLVerifier {
     }
 }
 
-// Classe para o Chatbot
 class SecurityChatbot {
     constructor(containerId, inputId) {
         this.container = document.getElementById(containerId);
@@ -825,12 +814,6 @@ class SecurityChatbot {
         }, 500);
     }
 
-    addMessage(type, text) {
-        const messageDiv = utils.createElement('div', chat-message ${type}-message, text);
-        this.container.appendChild(messageDiv);
-        this.container.scrollTop = this.container.scrollHeight;
-    }
-
     generateResponse(input) {
         const lowerInput = input.toLowerCase();
         for (const [key, response] of Object.entries(this.responses)) {
@@ -842,28 +825,24 @@ class SecurityChatbot {
     }
 }
 
-// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar AOS
     AOS.init({
         duration: 800,
         once: true
     });
 
-    // Inicializar componentes
     const alertManager = new AlertManager('alertas-container');
     alertManager.renderAlerts();
 
     const simulationManager = new SimulationManager();
     simulationManager.init();
-    window.simulationManager = simulationManager; // Necessário para o callback do botão "Tentar novamente"
+    window.simulationManager = simulationManager; 
 
     const urlVerifier = new URLVerifier('url-form', 'url-result');
     
     const chatbot = new SecurityChatbot('chatbot-container', 'chat-input');
     chatbot.init();
 
-    // Configurar navegação suave
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
             e.preventDefault();
@@ -871,7 +850,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Configurar header fixo
     let lastScroll = 0;
     const header = document.querySelector('header');
     
