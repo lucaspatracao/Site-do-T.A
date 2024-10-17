@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Mantendo as variáveis CSS originais */
         :root {
             --cor-primaria: #0f172a;
             --cor-secundaria: #1e293b;
@@ -40,11 +41,15 @@
             font-family: var(--fonte-principal);
             background: var(--cor-primaria);
             color: var(--cor-texto);
+            line-height: 1.6;
+            font-size: 1.6rem;
             overflow-x: hidden;
         }
 
+        /* Header e Navegação */
         header {
             background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
             padding: 1.6rem 0;
             position: fixed;
             width: 100%;
@@ -99,13 +104,15 @@
             background: rgba(6, 182, 212, 0.1);
         }
 
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)),
-                        url('https://wallpapers.com/images/hd/4k-tech-pdapufxxxi7md845.jpg') no-repeat center center/cover;
+            padding: 12rem 2.4rem;
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)), 
+                        url('https://source.unsplash.com/random/1920x1080?technology') no-repeat center center/cover;
         }
 
         .hero-content {
@@ -128,10 +135,6 @@
 
         /* Cards e Seções */
         section {
-            padding: 4rem 0;
-        }
-
-        main {
             padding: 8rem 2.4rem;
         }
 
@@ -420,6 +423,914 @@
             margin-bottom: 1rem;
             font-size: 1.8rem;
         }
+
+        :root {
+    --cor-primaria: #0f172a;
+    --cor-secundaria: #1e293b;
+    --cor-terciaria: #334155;
+    --cor-destaque: #06b6d4;
+    --cor-destaque-hover: #0891b2;
+    --cor-texto: #94a3b8;
+    --cor-texto-claro: #e2e8f0;
+    --cor-gradiente: linear-gradient(135deg, #06b6d4, #3b82f6);
+    --cor-gradiente-hover: linear-gradient(135deg, #0891b2, #2563eb);
+    --fonte-principal: 'Inter', system-ui, -apple-system, sans-serif;
+    --transicao-padrao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --sombra-padrao: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --sombra-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --borda-radius: 12px;
+}
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    background: var(--cor-primaria);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    font-size: 1.6rem;
+    overflow-x: hidden;
+}
+
+/* Header e Navegação */
+header {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 2rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+    transition: var(--transicao-padrao);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 0 2.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    transition: var(--transicao-padrao);
+}
+
+.logo:hover {
+    color: var(--cor-destaque);
+    transform: scale(1.05);
+}
+
+.logo i {
+    color: var(--cor-destaque);
+    font-size: 3.2rem;
+}
+
+nav ul {
+    display: flex;
+    gap: 3.2rem;
+    list-style: none;
+}
+
+nav a {
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 1rem 1.6rem;
+    border-radius: var(--borda-radius);
+    transition: var(--transicao-padrao);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+nav a i {
+    font-size: 1.8rem;
+}
+
+nav a:hover {
+    color: var(--cor-destaque);
+    background: rgba(6, 182, 212, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12rem 2.4rem;
+    background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)),
+                url('https://source.unsplash.com/random/1920x1080?technology') no-repeat center center/cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 80rem;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero h1 {
+    font-size: 7.2rem;
+    color: var(--cor-texto-claro);
+    margin-bottom: 2.4rem;
+    line-height: 1.2;
+    font-weight: 800;
+    background: var(--cor-gradiente);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 2.4rem;
+    color: var(--cor-texto);
+    margin-bottom: 4rem;
+    line-height: 1.6;
+}
+
+/* Cards e Seções */
+section {
+    padding: 10rem 2.4rem;
+}
+
+.container {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--cor-secundaria);
+    border-radius: var(--borda-radius);
+    padding: 3.2rem;
+    margin-bottom: 2.4rem;
+    transition: var(--transicao-padrao);
+    border: 1px solid rgba(6, 182, 212, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--cor-gradiente);
+    opacity: 0;
+    transition: var(--transicao-padrao);
+    z-index: 0;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-hover);
+    border-color: var(--cor-destaque);
+}
+
+.card:hover::before {
+    opacity: 0.05;
+}
+
+.card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.card h3 {
+    color: var(--cor-texto-claro);
+    font-size: 2.4rem;
+    margin-bottom: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.card h3 i {
+    color: var(--cor-destaque);
+    font-size: 2.8rem;
+}
+
+/* Botões e Inputs */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.6rem 3.2rem;
+    background: var(--cor-gradiente);
+    color: white;
+    border: none;
+    border-radius: var(--borda-radius);
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicao-padrao);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--cor-gradiente-hover);
+    opacity: 0;
+    transition: var(--transicao-padrao);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-hover);
+}
+
+.btn:hover::before {
+    opacity: 1;
+}
+
+.btn span, .btn i {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--cor-destaque);
+    color: var(--cor-destaque);
+}
+
+.btn-outline:hover {
+    background: rgba(6, 182, 212, 0.1);
+}
+
+input, select {
+    width: 100%;
+    padding: 1.6rem;
+    background: var(--cor-terciaria);
+    border: 2px solid rgba(6, 182, 212, 0.2);
+    border-radius: var(--borda-radius);
+    color: var(--cor-texto-claro);
+    font-size: 1.6rem;
+    transition: var(--transicao-padrao);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.2);
+}
+
+/* Animações */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    html {
+        font-size: 56.25%;
+    }
+
+    .hero h1 {
+        font-size: 4.8rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .card {
+        margin: 1rem;
+    }
+}
+
+/* Melhorias Específicas */
+.nivel-alerta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    margin-top: 1.6rem;
+}
+
+.nivel-alerta.alto {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.nivel-alerta.medio {
+    background: rgba(234, 179, 8, 0.1);
+    color: #eab308;
+    border: 1px solid rgba(234, 179, 8, 0.2);
+}
+
+.faq-item {
+    padding: 2.4rem;
+    margin-bottom: 2rem;
+    border-radius: var(--borda-radius);
+    transition: var(--transicao-padrao);
+}
+
+.faq-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-hover);
+}
+
+.chat-message {
+    max-width: 80%;
+    padding: 1.6rem 2.4rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.3s ease;
+}
+
+:root {
+    /* Core Color Palette */
+    --cor-primaria: #0f172a;
+    --cor-primaria-light: #1e293b;
+    --cor-primaria-dark: #0a0f1d;
+    --cor-secundaria: #1e293b;
+    --cor-secundaria-light: #334155;
+    --cor-secundaria-dark: #0f172a;
+    --cor-terciaria: #334155;
+    --cor-terciaria-light: #475569;
+    --cor-terciaria-dark: #1e293b;
+    
+    /* Accent Colors */
+    --cor-destaque: #06b6d4;
+    --cor-destaque-light: #22d3f1;
+    --cor-destaque-dark: #0891b2;
+    --cor-destaque-hover: #0891b2;
+    --cor-destaque-active: #0e7490;
+    
+    /* Text Colors */
+    --cor-texto: #94a3b8;
+    --cor-texto-light: #cbd5e1;
+    --cor-texto-dark: #64748b;
+    --cor-texto-claro: #e2e8f0;
+    --cor-texto-escuro: #1e293b;
+    
+    /* Status Colors */
+    --cor-sucesso: #10b981;
+    --cor-aviso: #f59e0b;
+    --cor-erro: #ef4444;
+    --cor-info: #3b82f6;
+    
+    /* Gradients */
+    --cor-gradiente: linear-gradient(135deg, #06b6d4, #3b82f6);
+    --cor-gradiente-hover: linear-gradient(135deg, #0891b2, #2563eb);
+    --cor-gradiente-active: linear-gradient(135deg, #0e7490, #1d4ed8);
+    --cor-gradiente-dark: linear-gradient(135deg, #0f172a, #1e293b);
+    
+    /* Fonts */
+    --fonte-principal: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --fonte-secundaria: 'Plus Jakarta Sans', var(--fonte-principal);
+    --fonte-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    
+    /* Typography Scale */
+    --font-size-xs: 1.2rem;
+    --font-size-sm: 1.4rem;
+    --font-size-base: 1.6rem;
+    --font-size-lg: 1.8rem;
+    --font-size-xl: 2rem;
+    --font-size-2xl: 2.4rem;
+    --font-size-3xl: 3rem;
+    --font-size-4xl: 3.6rem;
+    --font-size-5xl: 4.8rem;
+    --font-size-6xl: 6rem;
+    
+    /* Spacing Scale */
+    --spacing-xs: 0.4rem;
+    --spacing-sm: 0.8rem;
+    --spacing-base: 1.6rem;
+    --spacing-lg: 2.4rem;
+    --spacing-xl: 3.2rem;
+    --spacing-2xl: 4rem;
+    --spacing-3xl: 4.8rem;
+    
+    /* Transitions */
+    --transicao-padrao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transicao-rapida: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transicao-lenta: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Shadows */
+    --sombra-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --sombra-padrao: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --sombra-md: 0 6px 12px -2px rgba(0, 0, 0, 0.15), 0 3px 7px -3px rgba(0, 0, 0, 0.1);
+    --sombra-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --sombra-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --sombra-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --sombra-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    
+    /* Border Radius */
+    --borda-radius-sm: 0.4rem;
+    --borda-radius: 0.8rem;
+    --borda-radius-md: 1.2rem;
+    --borda-radius-lg: 1.6rem;
+    --borda-radius-xl: 2.4rem;
+    --borda-radius-full: 9999px;
+    
+    /* Z-index Scale */
+    --z-negative: -1;
+    --z-elevate: 1;
+    --z-sticky: 100;
+    --z-drawer: 200;
+    --z-dropdown: 300;
+    --z-modal: 400;
+    --z-popover: 500;
+    --z-tooltip: 600;
+    --z-toast: 700;
+    --z-overlay: 800;
+}
+
+/* Base Reset & Typography */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--cor-texto);
+    background: var(--cor-primaria);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease;
+}
+
+/* Typography Enhancements */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--fonte-secundaria);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--cor-texto-claro);
+    margin-bottom: var(--spacing-lg);
+}
+
+h1 { font-size: var(--font-size-6xl); }
+h2 { font-size: var(--font-size-4xl); }
+h3 { font-size: var(--font-size-2xl); }
+h4 { font-size: var(--font-size-xl); }
+h5 { font-size: var(--font-size-lg); }
+h6 { font-size: var(--font-size-base); }
+
+p {
+    margin-bottom: var(--spacing-base);
+    max-width: 70ch;
+}
+
+a {
+    color: var(--cor-destaque);
+    text-decoration: none;
+    transition: var(--transicao-padrao);
+}
+
+a:hover {
+    color: var(--cor-destaque-light);
+    text-decoration: underline;
+}
+
+/* Container & Layout */
+.container {
+    width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.grid {
+    display: grid;
+    gap: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+}
+
+/* Header & Navigation */
+header {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: var(--z-sticky);
+    transition: var(--transicao-padrao);
+    box-shadow: var(--sombra-padrao);
+}
+
+/* Navigation Styles */
+nav {
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: var(--spacing-base) var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-base);
+    transition: var(--transicao-padrao);
+}
+
+.logo:hover {
+    color: var(--cor-destaque);
+    transform: scale(1.05);
+    text-decoration: none;
+}
+
+.logo i {
+    color: var(--cor-destaque);
+    font-size: var(--font-size-3xl);
+    transition: var(--transicao-padrao);
+}
+
+nav ul {
+    display: flex;
+    gap: var(--spacing-xl);
+    list-style: none;
+}
+
+nav a {
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    padding: var(--spacing-sm) var(--spacing-base);
+    border-radius: var(--borda-radius);
+    transition: var(--transicao-padrao);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+nav a i {
+    font-size: var(--font-size-lg);
+    transition: var(--transicao-padrao);
+}
+
+nav a:hover {
+    color: var(--cor-destaque);
+    background: rgba(6, 182, 212, 0.1);
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+nav a:hover i {
+    transform: scale(1.1);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-3xl) var(--spacing-lg);
+    background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)),
+                url('https://source.unsplash.com/random/1920x1080?technology') no-repeat center center/cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 80rem;
+    position: relative;
+    z-index: var(--z-elevate);
+    animation: fadeInUp 1s ease-out;
+    padding: var(--spacing-2xl);
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: var(--borda-radius-lg);
+    border: 1px solid rgba(6, 182, 212, 0.1);
+}
+
+.hero h1 {
+    font-size: clamp(3.6rem, 5vw, 7.2rem);
+    color: var(--cor-texto-claro);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.2;
+    font-weight: 800;
+    background: var(--cor-gradiente);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: var(--sombra-sm);
+}
+
+.hero p {
+    font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+    color: var(--cor-texto);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
+    max-width: 60ch;
+    margin-inline: auto;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-base) var(--spacing-xl);
+    background: var(--cor-gradiente);
+    color: white;
+    border: none;
+    border-radius: var(--borda-radius);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicao-padrao);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--sombra-md);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--cor-gradiente-hover);
+    opacity: 0;
+    transition: var(--transicao-padrao);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-lg);
+    text-decoration: none;
+}
+
+.btn:hover::before {
+    opacity: 1;
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: var(--sombra-sm);
+}
+
+.btn span, .btn i {
+    position: relative;
+    z-index: var(--z-elevate);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    html {
+        font-size: 56.25%;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        padding: var(--spacing-base);
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-enhanced {
+    background: linear-gradient(to bottom, var(--cor-secundaria), var(--cor-primaria));
+    padding: 6rem 0 3rem;
+    position: relative;
+    border-top: 1px solid rgba(6, 182, 212, 0.1);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 4rem;
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 0 2.4rem;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.footer-column h3 {
+    color: var(--cor-texto-claro);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-column h3 i {
+    color: var(--cor-destaque);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.footer-links a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    transition: var(--transicao-padrao);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.footer-links a:hover {
+    color: var(--cor-destaque);
+    transform: translateX(5px);
+}
+
+.social-links {
+    display: flex;
+    gap: 1.6rem;
+    margin-top: 1.2rem;
+}
+
+.social-links a {
+    color: var(--cor-texto);
+    font-size: 2.4rem;
+    transition: var(--transicao-padrao);
+}
+
+.social-links a:hover {
+    color: var(--cor-destaque);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    margin-top: 4rem;
+    padding-top: 2.4rem;
+    border-top: 1px solid rgba(6, 182, 212, 0.1);
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--cor-texto);
+    font-size: 1.4rem;
+}
+
+.footer-newsletter {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.2rem;
+}
+
+.footer-newsletter input {
+    flex: 1;
+    padding: 1.2rem;
+    border-radius: 6px;
+    background: var(--cor-terciaria);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    color: var(--cor-texto-claro);
+}
+
+.footer-newsletter button {
+    padding: 1.2rem 2.4rem;
+    background: var(--cor-destaque);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transicao-padrao);
+}
+
+.footer-newsletter button:hover {
+    background: var(--cor-destaque-hover);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .footer-newsletter {
+        flex-direction: column;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -452,7 +1363,10 @@
     </section>
 
     <main>
-        <section id="tutoriais" >
+        <!-- Mantendo as seções originais e adicionando as novas -->
+        
+        <!-- Seção de Tutoriais mantida do primeiro documento -->
+        <section id="tutoriais" data-aos="fade-up">
             <div class="container">
                 <h2><i class="fas fa-graduation-cap"></i> Tutoriais de Segurança</h2>
                 <div class="grid">
@@ -475,16 +1389,17 @@
             </div>
         </section>
 
-        <section id="alertas" >
+        <section id="alertas" data-aos="fade-up">
             <div class="container">
                 <h2><i class="fas fa-bell"></i> Alertas de Segurança</h2>
                 <div id="alertas-container" class="grid">
-    
+                    <!-- Preenchido via JavaScript -->
                 </div>
             </div>
         </section>
 
-        <section id="simulacoes" 
+        <!-- Nova seção de Simulações -->
+        <section id="simulacoes" data-aos="fade-up">
             <div class="container">
                 <h2><i class="fas fa-vr-cardboard"></i> Simulações de Golpes</h2>
                 <div id="simulacao-container">
@@ -501,7 +1416,8 @@
             </div>
         </section>
 
-        <section id="verificador" 
+        <!-- Nova seção de Verificador de URLs -->
+        <section id="verificador">
             <div class="container">
                 <h2><i class="fas fa-search"></i> Verificador de URLs</h2>
                 <form id="url-form">
@@ -512,7 +1428,8 @@
             </div>
         </section>
 
-        <section id="chatbot" 
+        <!-- Seção do Chatbot mantida e melhorada -->
+        <section id="chatbot" data-aos="fade-up">
             <div class="container">
                 <h2><i class="fas fa-robot"></i> Assistente Virtual</h2>
                 <div class="card">
@@ -529,7 +1446,7 @@
             </div>
         </section>
 
-        <section id="bancos" 
+        <section id="bancos" data-aos="fade-up">
             <div class="container">
                 <h2><i class="fas fa-university"></i> Acesso Seguro aos Bancos</h2>
                 <p>Clique nos botões abaixo para acessar o site oficial do seu banco:</p>
@@ -542,7 +1459,8 @@
             </div>
         </section>
 
-        <section id="faq" 
+        <!-- Nova seção de FAQ -->
+        <section id="faq" data-aos="fade-up">
             <div class="container">
                 <h2><i class="fas fa-question-circle"></i> Perguntas Frequentes</h2>
                 <div class="faq-item">
@@ -573,12 +1491,30 @@
         </section>
         
     </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 SafeBrowse - Proteção Digital. Todos os direitos reservados.</p>
+    
+    <footer class="footer-enhanced">
+    <div class="footer-grid">
+        <div class="footer-column">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
         </div>
-    </footer>
+
+        <div class="footer-column">
+            <h3><i class="fas fa-link"></i> Links Rápidos</h3>
+            <div class="footer-links">
+                <a href="#tutoriais"><i class="fas fa-chevron-right"></i> Tutoriais</a>
+                <a href="#alertas"><i class="fas fa-chevron-right"></i> Alertas</a>
+                <a href="#simulacoes"><i class="fas fa-chevron-right"></i> Simulações</a>
+                <a href="#verificador"><i class="fas fa-chevron-right"></i> Verificador</a>
+                <a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a>
+            </div>
+        </div>
+</footer>
     <script>
        // Utilitários
 const utils = {
@@ -772,8 +1708,8 @@ class URLVerifier {
                 <ul>
                     <li>HTTPS: ${indicators.isHttps ? '✓' : '✗'}</li>
                     <li>Domínio válido: ${indicators.isValidDomain ? '✓' : '✗'}</li>
-                    ${indicators.hasSuspiciousWords ? '<li>⚠ Palavras suspeitas detectadas</li>' : ''}
-                    ${indicators.hasUncommonTLD ? '<li>⚠ Extensão de domínio incomum</li>' : ''}
+                    ${indicators.hasSuspiciousWords ? '<li>⚠️ Palavras suspeitas detectadas</li>' : ''}
+                    ${indicators.hasUncommonTLD ? '<li>⚠️ Extensão de domínio incomum</li>' : ''}
                 </ul>
             </div>
         `;
@@ -785,17 +1721,93 @@ class SecurityChatbot {
         this.container = document.getElementById(containerId);
         this.input = document.getElementById(inputId);
         this.responses = {
-            senha: 'Nunca compartilhe suas senhas. Use senhas fortes e diferentes para cada conta.',
-            phishing: 'Phishing é uma técnica de fraude online. Verifique sempre a autenticidade dos e-mails e sites.',
-            antivirus: 'Mantenha seu antivírus atualizado e faça varreduras regulares.',
-            default: 'Posso ajudar com dúvidas sobre senhas, phishing ou antivírus. Como posso auxiliar?'
+            // Senhas e autenticação
+            senha: {
+                keywords: ['senha', 'password', 'autenticação', 'login'],
+                response: `Dicas importantes sobre senhas:
+                • Use pelo menos 12 caracteres
+                • Combine letras maiúsculas, minúsculas, números e símbolos
+                • Evite informações pessoais ou sequências óbvias
+                • Use um gerenciador de senhas
+                • Ative autenticação de dois fatores (2FA) sempre que possível
+                • Nunca compartilhe suas senhas
+                • Troque suas senhas regularmente`
+            },
+            
+            // Phishing e golpes
+            phishing: {
+                keywords: ['phishing', 'golpe', 'fraude', 'scam', 'email suspeito', 'spam'],
+                response: `Alertas sobre phishing e golpes online:
+                • Desconfie de emails urgentes ou ameaçadores
+                • Verifique o endereço do remetente com atenção
+                • Não clique em links suspeitos
+                • Nunca forneça dados sensíveis por email
+                • Verifique a URL dos sites antes de fazer login
+                • Se tiver dúvidas, contate a empresa diretamente
+                • Mantenha-se informado sobre novos tipos de golpes`
+            },
+            
+            // Antivírus e proteção
+            antivirus: {
+                keywords: ['antivirus', 'proteção', 'malware', 'virus', 'segurança'],
+                response: `Recomendações sobre proteção digital:
+                • Mantenha seu antivírus sempre atualizado
+                • Faça varreduras completas regularmente
+                • Mantenha seu sistema operacional atualizado
+                • Use um firewall
+                • Evite downloads de fontes não confiáveis
+                • Faça backup regular dos seus dados
+                • Monitore atividades suspeitas`
+            },
+            
+            // Privacidade
+            privacidade: {
+                keywords: ['privacidade', 'dados pessoais', 'cookies', 'rastreamento'],
+                response: `Dicas para proteger sua privacidade online:
+                • Use navegação privada quando necessário
+                • Gerencie suas configurações de cookies
+                • Revise permissões de aplicativos
+                • Use VPN em redes públicas
+                • Evite compartilhar informações sensíveis
+                • Configure sua privacidade nas redes sociais
+                • Cuidado com o que compartilha online`
+            },
+            
+            // Redes sociais
+            redesocial: {
+                keywords: ['rede social', 'facebook', 'instagram', 'twitter', 'whatsapp', 'telegram'],
+                response: `Segurança em redes sociais:
+                • Verifique suas configurações de privacidade
+                • Não aceite conexões de desconhecidos
+                • Cuidado com links compartilhados
+                • Evite postar informações sensíveis
+                • Use autenticação em dois fatores
+                • Desconfie de mensagens suspeitas
+                • Reporte conteúdo inadequado`
+            },
+            
+            // Compras online
+            compras: {
+                keywords: ['compra', 'pagamento', 'cartão', 'pix', 'boleto', 'loja'],
+                response: `Segurança em compras online:
+                • Verifique se o site é seguro (https://)
+                • Use cartões virtuais quando possível
+                • Guarde comprovantes de pagamento
+                • Evite comprar em redes Wi-Fi públicas
+                • Confira a reputação da loja
+                • Desconfie de preços muito abaixo do mercado
+                • Use métodos de pagamento seguros`
+            }
         };
     }
 
     init() {
-        if (!this.container || !this.input) return;
+        if (!this.container || !this.input) {
+            console.error('Elementos do chatbot não encontrados');
+            return;
+        }
 
-        this.addMessage('bot', 'Olá! Como posso ajudar com sua segurança digital hoje?');
+        this.addMessage('bot', 'Olá! Sou seu assistente de segurança digital. Posso ajudar com dúvidas sobre:\n• Senhas e autenticação\n• Phishing e golpes\n• Antivírus e proteção\n• Privacidade online\n• Redes sociais\n• Compras seguras\n\nComo posso ajudar?');
         
         this.input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && this.input.value.trim()) {
@@ -806,43 +1818,121 @@ class SecurityChatbot {
 
     handleUserInput() {
         const message = this.input.value.trim();
+        if (!message) return;
+
         this.addMessage('user', message);
         this.input.value = '';
 
+        // Simula um efeito de "digitando..."
+        this.addMessage('bot', '...', 'typing');
+        
         setTimeout(() => {
+            // Remove a mensagem de "digitando..."
+            const typingMessage = this.container.querySelector('.typing');
+            if (typingMessage) {
+                typingMessage.remove();
+            }
+            
             this.addMessage('bot', this.generateResponse(message));
-        }, 500);
+        }, 1000);
+    }
+
+    addMessage(type, text, className = '') {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `chat-message ${type}-message ${className}`;
+        messageDiv.textContent = text;
+        this.container.appendChild(messageDiv);
+        this.container.scrollTop = this.container.scrollHeight;
     }
 
     generateResponse(input) {
         const lowerInput = input.toLowerCase();
-        for (const [key, response] of Object.entries(this.responses)) {
-            if (lowerInput.includes(key)) {
-                return response;
+        
+        // Verifica todas as categorias de resposta
+        for (const category of Object.values(this.responses)) {
+            if (category.keywords.some(keyword => lowerInput.includes(keyword))) {
+                return category.response;
             }
         }
-        return this.responses.default;
+
+        // Resposta padrão se nenhuma palavra-chave for encontrada
+        return `Não encontrei uma resposta específica para sua pergunta. Posso ajudar com:
+        • Senhas e autenticação
+        • Phishing e golpes
+        • Antivírus e proteção
+        • Privacidade online
+        • Redes sociais
+        • Compras seguras
+        
+        Por favor, reformule sua pergunta usando algumas dessas palavras-chave.`;
     }
 }
 
+// Correção na inicialização do chatbot
 document.addEventListener('DOMContentLoaded', () => {
+    try {
+        // Inicializar AOS
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+        }
+
+        // Inicializar componentes
+        const alertManager = new AlertManager('alertas-container');
+        alertManager.renderAlerts();
+
+        const simulationManager = new SimulationManager();
+        simulationManager.init();
+        window.simulationManager = simulationManager;
+
+        const urlVerifier = new URLVerifier('url-form', 'url-result');
+        
+        // Inicialização corrigida do chatbot
+        const chatbot = new SecurityChatbot('chatbot-container', 'chat-input');
+        chatbot.init();
+        window.chatbot = chatbot; // Disponibiliza globalmente para uso nos eventos de click
+
+        // Configurar navegação suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = anchor.getAttribute('href').slice(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+    } catch (error) {
+        console.error('Erro na inicialização:', error);
+    }
+});     
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', () => {
+    // Inicializar AOS
     AOS.init({
         duration: 800,
         once: true
     });
 
+    // Inicializar componentes
     const alertManager = new AlertManager('alertas-container');
     alertManager.renderAlerts();
 
     const simulationManager = new SimulationManager();
     simulationManager.init();
-    window.simulationManager = simulationManager; 
+    window.simulationManager = simulationManager; // Necessário para o callback do botão "Tentar novamente"
 
     const urlVerifier = new URLVerifier('url-form', 'url-result');
     
     const chatbot = new SecurityChatbot('chatbot-container', 'chat-input');
     chatbot.init();
 
+    // Configurar navegação suave
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
             e.preventDefault();
@@ -850,6 +1940,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Configurar header fixo
     let lastScroll = 0;
     const header = document.querySelector('header');
     
